@@ -41,6 +41,11 @@ userSchema.query.byName = function(name) {
   return this.where({ name }).limit(1);
 }
 
+// Virtual properties
+userSchema.virtual('fullAddress').get(function() {
+  return `${this.address.street}, ${this.address.city}`;
+});
+
 // Model to create a collection in the MongoDB
 const User = mongoose.model('User', userSchema); 
 

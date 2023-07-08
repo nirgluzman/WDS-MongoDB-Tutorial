@@ -37,6 +37,7 @@ const findOne = async ({ name }) => {
 
     if (user) {
       user.sayHi();
+      console.log(user.fullAddress);
     } else {
       console.log('User not found');
     }
