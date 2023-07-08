@@ -38,6 +38,7 @@ const findOne = async ({ name }) => {
     if (user) {
       user.sayHi();
       console.log(user.fullAddress);
+      user.save(); // trigger the middlewares
     } else {
       console.log('User not found');
     }
@@ -56,7 +57,8 @@ createUser({
   address: { street: '123 Main St', city: 'Denver' },
 });
 
-findOne({name: 'Tim'});
+findOne({ name: 'Tim' });
+
 
 
 

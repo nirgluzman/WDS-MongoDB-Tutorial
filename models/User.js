@@ -46,6 +46,18 @@ userSchema.virtual('fullAddress').get(function() {
   return `${this.address.street}, ${this.address.city}`;
 });
 
+// Middleware to run before saving a document
+userSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+// Middleware to run after saving a document
+userSchema.post('save', function(doc, next) {
+  console.log(`${doc.name} was saved!`);
+  next();
+});
+
 // Model to create a collection in the MongoDB
 const User = mongoose.model('User', userSchema); 
 
