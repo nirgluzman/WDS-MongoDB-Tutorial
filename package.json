@@ -1,0 +1,19 @@
+{
+  "name": "wds-mongoose",
+  "version": "1.0.0",
+  "description": "Mongoose Crash Course - Beginner Through Advanced",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
