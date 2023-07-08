@@ -32,7 +32,9 @@ const createUser = async ({ name, age, email, hobbies, address }) => {
 const findOne = async ({ name }) => {
   try {
     const user = await User.findByName(name);
+    // const user = await User.find().byName(name);
     console.log('Found User:', user);
+
     if (user) {
       user.sayHi();
     } else {

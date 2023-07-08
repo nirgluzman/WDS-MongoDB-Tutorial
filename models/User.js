@@ -36,6 +36,11 @@ userSchema.statics.findByName = function(name) {
   return this.findOne({ name });
 }
 
+// Custom query helpers to extend mongoose's chainable query builder API
+userSchema.query.byName = function(name) {
+  return this.where({ name }).limit(1);
+}
+
 // Model to create a collection in the MongoDB
 const User = mongoose.model('User', userSchema); 
 
