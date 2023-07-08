@@ -26,7 +26,17 @@ const userSchema = new mongoose.Schema({
   address: addressSchema,
 });
 
+// Custom document instance methods, https://mongoosejs.com/docs/guide.html#methods
+userSchema.methods.sayHi = function() {
+  console.log(`Hi, my name is ${this.name}`);
+};
+
+// Custom static functions
+userSchema.statics.findByName = function(name) {
+  return this.findOne({ name });
+}
+
 // Model to create a collection in the MongoDB
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema); 
 
 export default User;

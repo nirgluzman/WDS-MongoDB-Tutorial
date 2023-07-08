@@ -28,14 +28,33 @@ const createUser = async ({ name, age, email, hobbies, address }) => {
   }
 };
 
+// findOne({name})
+const findOne = async ({ name }) => {
+  try {
+    const user = await User.findByName(name);
+    console.log('Found User:', user);
+    if (user) {
+      user.sayHi();
+    } else {
+      console.log('User not found');
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 connectDB();
 
 createUser({
   name: 'Tim',
-  age: 22.1,
+  age: 22,
   email: 'test@test.com',
   hobbies: ['coding', 'music'],
   address: { street: '123 Main St', city: 'Denver' },
 });
+
+findOne({name: 'Tim'});
+
+
 
 
