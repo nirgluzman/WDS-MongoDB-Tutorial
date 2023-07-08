@@ -11,7 +11,13 @@ const addressSchema = new mongoose.Schema({
 // User Schema 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  age: { type: Number, required: true, min: 18, max: 65 },
+  age: {
+    type: Number,
+    required: true,
+    min: 18,
+    max: 65,
+    validate: { validator: Number.isInteger, message: '{VALUE} is not an integer value' }, // works ONLY with save() and create() methods
+  },
   email: { type: String, required: true, unique: true, lowercase: true },
   createdAt: { type: Date, immutable: true, default: () => Date.now() },
   updatedAt: { type: Date, default: () => Date.now() },

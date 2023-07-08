@@ -32,7 +32,7 @@ connectDB();
 
 createUser({
   name: 'Tim',
-  age: 22,
+  age: 22.1,
   email: 'test@test.com',
   hobbies: ['coding', 'music'],
   address: { street: '123 Main St', city: 'Denver' },
