@@ -17,18 +17,25 @@ const connectDB = async () => {
 };
 
 // create/save a new user in the database
-const createUser = async ({ name, age }) => {
-  const user = new User({ name, age });
+const createUser = async ({ name, age, email, hobbies, address }) => {
+  const user = new User({ name, age, email, hobbies, address });
 
   try {
     await user.save(); // save the user to the database
     console.log('Created new User:', user);
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
   }
 };
 
 connectDB();
-createUser({ name: 'Tim', age: 22 });
+
+createUser({
+  name: 'Tim',
+  age: 22,
+  email: 'test@test.com',
+  hobbies: ['coding', 'music'],
+  address: { street: '123 Main St', city: 'Denver' },
+});
 
 
