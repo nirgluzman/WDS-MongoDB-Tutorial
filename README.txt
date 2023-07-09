@@ -7,6 +7,11 @@ https://courses.webdevsimplified.com/
 Mongoose Crash Course - Beginner Through Advanced
 https://www.youtube.com/watch?v=DZBGEVgL2eE
 
+<<<<<<< HEAD
 Mongoose - save() method
 https://masteringjs.io/tutorials/mongoose/save
 https://mongoosejs.com/docs/guide.html#methods
+=======
+Error handling for createUser
+https://stackoverflow.com/questions/75400755/how-do-i-write-truly-custom-error-messages-and-codes-for-mongoose-validation
+>>>>>>> 45421c7 (enhance the error handling for createUser)

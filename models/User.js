@@ -10,7 +10,7 @@ const addressSchema = new mongoose.Schema({
 
 // User Schema 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: [true, 'name is required'] },
   age: {
     type: Number,
     required: true,
@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     max: 65,
     validate: { validator: Number.isInteger, message: '{VALUE} is not an integer value' }, // works ONLY with save() and create() methods
   },
-  email: { type: String, required: true, unique: true, lowercase: true },
+  email: { type: String, required: true, unique: true, match: [/\S+@\S+\.\S+/, 'invalid email address'], lowercase: true },
   createdAt: { type: Date, immutable: true, default: () => Date.now() },
   updatedAt: { type: Date, default: () => Date.now() },
   bestFriend: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -58,7 +58,11 @@ userSchema.post('save', function(doc, next) {
   next();
 });
 
+<<<<<<< HEAD
 // Create a collection 'users' in MongoDB
+=======
+// Model to create a collection 'users' in the MongoDB
+>>>>>>> 45421c7 (enhance the error handling for createUser)
 const User = mongoose.model('User', userSchema); 
 
 export default User;

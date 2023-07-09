@@ -7,13 +7,28 @@ dotenv.config();
 import colors from 'colors';
 
 // connect to MongoDB with the mongoose.connect() method
+const { MONGO_URI } = process.env;
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
+    const conn = await mongoose.connect(MONGO_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`.blue.underline);
   } catch (error) {
     console.error(`Error: ${error.message}`.red.underline.bold);
   }
+};
+
+// https://www.youtube.com/watch?v=TP6Fzo1Ls58
+const errorFormater = (error) => {
+  const allErrors = error.substring(error.indexOf(':') + 1).trim();
+  const allErrorsInArray = allErrors.split(',').map((err) => err.trim());
+
+  const errors = {};
+  allErrorsInArray.forEach((err) => {
+    const [field, value] = err.split(':').map((e) => e.trim());
+    errors[field] = value;
+  });
+
+  return errors;
 };
 
 // create/save a new user in the database
@@ -24,7 +39,20 @@ const createUser = async ({ name, age, email, hobbies, address }) => {
     await user.save(); // save the user to the database
     console.log('Created new User:', user);
   } catch (error) {
-    console.error(error.message);
+    switch (error.name) {
+      case 'ValidationError': // Error handling for misc validation errors
+        const keys = Object.keys(error.errors);
+        const values = Object.values(error.errors).map((e) => e.message);
+        console.error('Validation Error:', values.join(', '));
+        break;
+      case 'MongoServerError': // Error handling for duplicate email address
+        if (error.code === 11000) {
+          console.log('Duplicate Key Error: Email already exists');
+        }
+        break;
+      default:
+        console.log('Unknown Error:', error.message);
+    }
   }
 };
 
@@ -58,7 +86,6 @@ createUser({
 });
 
 findOne({ name: 'Tim' });
-
 
 
 
