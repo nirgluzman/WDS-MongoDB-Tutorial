@@ -58,7 +58,7 @@ userSchema.post('save', function(doc, next) {
   next();
 });
 
-// Model to create a collection in the MongoDB
+// Create a collection 'users' in MongoDB
 const User = mongoose.model('User', userSchema); 
 
 export default User;
