@@ -6,3 +6,7 @@ https://courses.webdevsimplified.com/
 
 Mongoose Crash Course - Beginner Through Advanced
 https://www.youtube.com/watch?v=DZBGEVgL2eE
+
+Mongoose - save() method
+https://masteringjs.io/tutorials/mongoose/save
+https://mongoosejs.com/docs/guide.html#methods
